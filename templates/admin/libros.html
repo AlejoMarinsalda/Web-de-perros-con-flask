@@ -1,0 +1,96 @@
+{% include "admin/header.html" %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <!-- dividimos la pantalla en dos con boostrap en 4 y 8 = 12 -->
+            <br>
+            <div class="card">
+                <!-- creamos una card que seria un espacio de esos dos que dividimos arriba, este espacio tiene header,body y footer -->
+                <div class="card-header">
+                    Datos del libro
+                </div>
+                <div class="card-body">
+
+                    <form action="/admin/libros/guardar" method="post" enctype="multipart/form-data">
+
+                        <div class="mb-3">
+                          <label for="txtNombre" class="form-label">Nombre del libro:</label>
+                          <input type="text" class="form-control" name="txtNombre" id="txtNombre" aria-describedby="helpId" placeholder="Escriba el nombre del libro">
+
+                        </div>
+                        <div class="mb-3">
+                          <label for="txtImagen" class="form-label">Imagen</label>
+                          <input type="file"
+                            class="form-control" name="txtImagen" id="txtImagen" aria-describedby="helpId" placeholder="Imagen del libro">
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="txtURL" class="form-label">URL Descarga:</label>
+                          <input type="text"
+                            class="form-control" name="txtURL" id="txtURL" aria-describedby="helpId" placeholder="Escriba la URL de descarga">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Agregar</button>
+                    </form>
+
+                </div>
+                <div class="card-footer text-muted">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Imagen</th>
+                            <th>URL</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for libro in libros %}
+                        <tr class="">
+                            <td>{{ libro[0] }}</td>
+                            <td>{{ libro[1] }}</td>
+                            <td>
+                                <img width="60" src="/img/{{libro[2]}}" class="img-fluid rounded-top" alt="">
+                               
+
+                            </td>
+                            <td>
+                                
+                                <a name="" id="" class="btn btn-success" href="{{ libro[3] }}" role="button">Enlace</a>
+                                
+
+                            </td>
+                            <td>
+                                 <form action="/admin/libros/borrar" method="post">
+                                    
+                                    
+                                    <input value="{{ libro[0] }}" type="hidden" name="txtID" id="txtID">
+
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+{% include "admin/footer.html" %}

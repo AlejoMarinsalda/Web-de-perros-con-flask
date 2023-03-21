@@ -1,0 +1,15 @@
+<!-- traemos el header general -->
+{% include "admin/header.html" %} 
+<div class="p-5 bg-light">
+    <div class="container">
+          <h1 class="display-3">Bienvenido@ <strong>{{session["usuario"]}}</strong> al administrador del sitio del sitio web </h1>
+          <p class ="lead">Aqui podra administrar los libros del sitio web</p>
+          <hr class="my-2">
+          <p class="lead">
+              <a class="btn btn-primary btn-lg" href="/libros" role="button">Empezar la gestion</a>
+          </p>
+
+    </div>
+</div>
+{% include "admin/footer.html" %}
+<!-- traemos el footer general -->
